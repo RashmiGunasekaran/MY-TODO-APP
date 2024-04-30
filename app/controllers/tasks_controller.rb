@@ -35,7 +35,7 @@ class TasksController < ApplicationController
          end
       end
      else
-      flash.alert = "User not found."
+      flash.alert = "Task not Created"
     end
       
    end
