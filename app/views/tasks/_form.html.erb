@@ -12,16 +12,36 @@
       </div>
     <% end %>
   <% end %>
-  <div>
-    <%= form.label :title%>
-    <%= form.text_field :title %>
+  <div class ="container">
+    <div class="form-group row">
+       <div class="col-md-1">
+          <%= form.label :title%>
+        </div>
+        <div class="col-md-3">
+        <%= form.text_field :title, class: "form-control" %>
+        </div>
+    </div>
+    <div class="form-group row">
+       <div class="col-md-1">
+        <%= form.label :description%>
+        </div>
+            <div class="col-md-3">
+        <%= form.text_field :description, class: "form-control" %>
+        </div>
+     </div>
+    <div class="form-group row">
+       <div class="col-md-1">
+        <%= form.label :status%>
+        </div>
 
-    <%= form.label :description%>
-    <%= form.text_field :description %>
-
-    <%= form.label :status%>
-    <%= form.select :status, ['to-do', 'in-progress', 'done']%>
-
-    <%= form.submit "Create New Task" %>
+    <div class="col-md-3">
+    <%= form.select :status, ['to-do', 'in-progress', 'done'], class:"btn btn-secondary dropdown-toggle" %>
+    </div>
+  </div>
+    <div class="form-group row">
+      <div class="col-md-3 offset-md-1">
+        <%= form.submit "Save", :class=>"btn btn-primary" %>
+      </div>
+    </div>
   </div>
 <% end %>

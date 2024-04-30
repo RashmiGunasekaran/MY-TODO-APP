@@ -1,11 +1,17 @@
 class TasksController < ApplicationController
 
    def index
+      
       @tasks = Task.all
+
+      if params[:status_filter].present?
+
+      @tasks = Task.where(status: params[:status_filter])
+   end
    end
 
    def show
-      @tasks = Task.find(params[:id])
+      @tasks = Task.find_by(id: params[:id])
    end
    
    def new
@@ -16,10 +22,9 @@ class TasksController < ApplicationController
    end
    
    def create
-
+   if !(Task.where(status: "to-do").count>=Task.count/2) && param[:status]=="to-do"
 
       @task = Task.new(task_params)
-      	#raise @task.inspect
       respond_to do |format|
          if @task.save
             format.html { redirect_to @task, notice: 'Task was successfully created.' }
@@ -29,6 +34,9 @@ class TasksController < ApplicationController
             format.json { render json: @task.errors, status: :unprocessable_entity }
          end
       end
+     else
+      flash.alert = "User not found."
+    end
       
    end
 
@@ -46,6 +54,7 @@ class TasksController < ApplicationController
    end
    
    def destroy
+      @task = Task.find_by(id: params[:id])
       @task.destroy
          respond_to do |format|
          format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
@@ -59,7 +68,6 @@ class TasksController < ApplicationController
    end
 
    def task_params
-   #	raise params.inspect
       params.require(:task).permit(:title, :description, :status)
    end
 end

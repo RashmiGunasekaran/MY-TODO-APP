@@ -1,10 +1,36 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @tasks %>
+
+
+<table class="table table-bordered">
+  <tr>
+    <th scope="col">Title</th>
+    <td> <%= @tasks.title %></td>
+  </tr>   
+  
+  <tr>
+    <th scope="col">Description</th>
+    <td> <%= @tasks.description %></td>
+  </tr>
+
+  <tr>
+    <th scope="col">Status</th>
+    <td><%= @tasks.status %></td>
+  </tr>
+    <tr>
+</table>
 
 <div>
-  <%= link_to "Edit this task", edit_task_path(@task) %> |
-  <%= link_to "Back to tasks", tasks_path %>
 
-  <%= button_to "Destroy this task", @task, method: :delete %>
+  <div class="row">
+    <div class="col-md-3">
+      <%= link_to "Edit Task", edit_task_path(@tasks.id), class: "btn btn-outline-info" %>
+    </div>
+    <div class="col-md-3">
+      <%= link_to "Back to tasks", tasks_path, class: "btn btn-outline-warning" %>
+    </div>
+    <div class="col-md-3">
+      <%= button_to "Delete", @task, method: :delete, class: "btn btn-danger"%>
+    </div>
+  </div>  
 </div>
