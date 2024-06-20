@@ -20,3 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_064727) do
   end
 
 end
+rails new my-new-app -d=mysql 
+
+rails db:create
+ rails db:migrate

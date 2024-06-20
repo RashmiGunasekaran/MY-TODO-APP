@@ -71,3 +71,5 @@ end
 gem "bootstrap"
 gem "sassc-rails"
 
+gem 'sidekiq', '~> 7.1', '>= 7.1.2'
+
